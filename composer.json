@@ -1,0 +1,32 @@
+{
+    "name": "bihanphp/bihan",
+    "description": "A PHP micro-framework based on the Symfony Components",
+    "keywords": ["microframework"],
+    "homepage": "http://bihanphp.github.io/bihan",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthieu Le Goff",
+            "email": "tubbix@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "pimple/pimple": "~3.0",
+        "nikic/fast-route": "dev-master",
+        "symfony/event-dispatcher": "~2.7|3.0.*",
+        "symfony/http-foundation": "~2.7|3.0.*",
+        "symfony/http-kernel": "~2.7|3.0.*"
+    },
+    "require-dev": {
+        "symfony/debug": "~2.3|3.0.*",
+        "monolog/monolog": "^1.4.1"
+    },
+    "autoload": {
+        "psr-4": { "Bihan\\": "src/Bihan" }
+    },
+    "autoload-dev" : {
+        "psr-4": { "Bihan\\Tests\\" : "tests/Bihan/Tests" }
+    },
+    "minimum-stability": "dev"
+}

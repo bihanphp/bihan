@@ -5,6 +5,8 @@ namespace Bihan\Tests;
 use Bihan\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Application test cases.
@@ -23,5 +25,33 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		});
 
 		$this->assertEquals('ok', $app->handle($request)->getContent());
+	}
+
+	/**
+     * @expectedException NotFoundHttpException
+     */
+	public function testNotFoundRouteShouldThrowNotFoundHttpException()
+	{
+		$app = new Application();
+
+		$app->match('GET', '/', function() {
+			return new Response('bar');
+		});
+
+		$app->handle(Request::create('/foo'));
+	}
+
+	/**
+     * @expectedException MethodNotAllowedHttpException
+     */
+	public function testNotAllowedMethodForRouteShouldThrowMethodNotAllowedHttpException()
+	{
+		$app = new Application();
+
+		$app->match('POST', '/', function() {
+			return new Response('bar');
+		});
+
+		$app->handle(Request::create('/foo'));
 	}
 }

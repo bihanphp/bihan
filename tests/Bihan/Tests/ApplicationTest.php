@@ -28,7 +28,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-     * @expectedException NotFoundHttpException
+     * @expectedException Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
 	public function testNotFoundRouteShouldThrowNotFoundHttpException()
 	{
@@ -42,7 +42,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-     * @expectedException MethodNotAllowedHttpException
+     * @expectedException Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException
      */
 	public function testNotAllowedMethodForRouteShouldThrowMethodNotAllowedHttpException()
 	{
@@ -52,6 +52,6 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 			return new Response('bar');
 		});
 
-		$app->handle(Request::create('/foo'));
+		$app->handle(Request::create('/'));
 	}
 }

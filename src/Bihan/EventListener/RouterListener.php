@@ -54,7 +54,7 @@ class RouterListener implements EventSubscriberInterface
                     $message .= sprintf(' (from "%s")', $referer);
                 }
 
-                throw new NotFoundHttpException($message, $e);
+                throw new NotFoundHttpException($message);
                 break;
 
             case Dispatcher::METHOD_NOT_ALLOWED:
@@ -62,7 +62,7 @@ class RouterListener implements EventSubscriberInterface
 
                 $message = sprintf('No route found for "%s %s": Method Not Allowed (Allow: %s)', $method, $pathInfo, implode(', ', $allowedMethods));
 
-                throw new MethodNotAllowedHttpException($allowedMethods, $message, $e);
+                throw new MethodNotAllowedHttpException($allowedMethods, $message);
                 break;
     
             case Dispatcher::FOUND:
